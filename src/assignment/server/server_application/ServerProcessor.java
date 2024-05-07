@@ -1,4 +1,4 @@
-package assignment.server.server_handler;
+package assignment.server.server_application;
 
 import com.google.gson.Gson;
 
