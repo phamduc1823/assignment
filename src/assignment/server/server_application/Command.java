@@ -1,21 +1,11 @@
 package assignment.server.server_application;
 
-import java.io.PrintWriter;
 
 public class Command {
     String commandType;
     String data;
-    PrintWriter out;
 
     public Command() {
-    }
-
-    public PrintWriter getOut() {
-        return out;
-    }
-
-    public void setOut(PrintWriter out) {
-        this.out = out;
     }
 
     public Command(String commandType, String data) {
@@ -24,6 +14,7 @@ public class Command {
     }
 
     public String getCommandType() {
+
         return commandType;
     }
 

@@ -8,8 +8,6 @@ import java.util.Map;
 public class Configuration {
     private String filePath = "D:\\My\\Program\\Company\\Synnex FPT\\Project\\Summary\\src\\assignment\\server\\dao\\config.txt";
     private Map<String, String> config = readFile(filePath);
-    private static Configuration configuration;
-
     public String DB_CONNECTION;
     public String SERVER_NAME;
     public String PORT_NUMBER;
@@ -20,18 +18,6 @@ public class Configuration {
 
     public Configuration() throws Exception {
         this.init();
-    }
-
-    static {
-        try {
-            configuration = new Configuration();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static Configuration getInstance() {
-        return configuration;
     }
 
     public void init(){

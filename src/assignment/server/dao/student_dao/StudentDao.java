@@ -1,35 +1,67 @@
 package assignment.server.dao.student_dao;
 
 import assignment.server.dao.DAO;
+import assignment.server.dao.DataSource;
 import assignment.server.model.Student;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDao implements DAO<Student, Integer> {
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
+    public DataSource dataSource;
 
-  @Override
-  public Student create(Student entity) {
-    return null;
-  }
+    public StudentDao() throws Exception {
+        this.dataSource = new DataSource();
+    }
 
-  @Override
-  public Student update(Student entity) {
-    return null;
-  }
+    @Override
+    public List<Student> getAll() throws SQLException {
+        List<Student> students = new ArrayList<>();
+        String query = "select * from student";
 
-  @Override
-  public Student getById(Integer id) {
-    return null;
-  }
+        try {
+            con = dataSource.getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
 
-  @Override
-  public void delete(Integer id) {
+            while (rs.next()) {
+                students.add(new Student(
+                        rs.getInt("id"),
+                        rs.getString("name")));
+            }
 
-  }
+            return students;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            con.close();
+        }
+    }
 
-  @Override
-  public List<Student> getAll() {
-    return List.of();
-  }
+    @Override
+    public Student create(Student entity) {
+        return null;
+    }
+
+    @Override
+    public Student getById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Student update(Student entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer id) {
+
+    }
 }

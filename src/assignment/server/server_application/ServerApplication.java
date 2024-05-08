@@ -12,23 +12,26 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class ServerHandler {
+public class ServerApplication {
 
   public static void main(String[] args) {
     try {
-      BlockingQueue<Command> queue = new ArrayBlockingQueue<>(100);
+      //khoi tao queu && khoi tao list controller
+      BlockingQueue<Request> queue = new ArrayBlockingQueue<>(100);
       List<Controller> controllers = new ArrayList<>();
 
       var studentDao = new StudentDao();
       var studentService = new StudentService(studentDao);
+
+      //Them vao mang controller vua tao
       controllers.add(new StudentController(studentService));
 
-      for (int i = 0; i < 100; i++) {
+      for (int i = 0; i < 3; i++) {
         Worker worker = new Worker(queue, controllers);
         worker.start();
       }
-
-      ServerSocket serverSocket = new ServerSocket(2211);
+      System.out.println("Server running ...");
+      ServerSocket serverSocket = new ServerSocket(9999);
       while (true) {
         Socket socket = serverSocket.accept();
         new ServerProcessor(socket, queue).start();
@@ -36,6 +39,8 @@ public class ServerHandler {
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
+    } catch (Exception e) {
+        throw new RuntimeException(e);
     }
   }
 }
