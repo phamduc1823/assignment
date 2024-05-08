@@ -23,26 +23,29 @@ public class StudentDao implements DAO<Student, Integer> {
 
     @Override
     public List<Student> getAll() throws SQLException {
-        List<Student> students = new ArrayList<>();
-        String query = "select * from student";
-
-        try {
-            con = dataSource.getConnection();
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                students.add(new Student(
-                        rs.getInt("id"),
-                        rs.getString("name")));
-            }
-
-            return students;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            con.close();
-        }
+        Student student = new Student();
+        student.setId(1);
+        return List.of(student);
+//        List<Student> students = new ArrayList<>();
+//        String query = "select * from student";
+//
+//        try {
+//            con = dataSource.getConnection();
+//            ps = con.prepareStatement(query);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                students.add(new Student(
+//                        rs.getInt("id"),
+//                        rs.getString("name")));
+//            }
+//
+//            return students;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }finally {
+//            con.close();
+//        }
     }
 
     @Override

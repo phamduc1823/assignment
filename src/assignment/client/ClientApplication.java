@@ -1,8 +1,6 @@
-package assignment;
+package assignment.client;
 
-import assignment.client.MainApplication;
-
-public class Application {
+public class ClientApplication {
     public static void main(String[] args) {
         MainApplication mainApplication = new MainApplication();
         mainApplication.MainApplicationConnect();

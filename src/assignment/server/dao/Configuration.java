@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Configuration {
-    private String filePath = "D:\\My\\Program\\Company\\Synnex FPT\\Project\\Summary\\src\\assignment\\server\\dao\\config.txt";
+    private String filePath = "src/assignment/server/dao/config.txt";
     private Map<String, String> config = readFile(filePath);
     public String DB_CONNECTION;
     public String SERVER_NAME;
@@ -17,7 +17,7 @@ public class Configuration {
     public String DB_MAX_CONNECTIONS;
 
     public Configuration() throws Exception {
-        this.init();
+//        this.init();
     }
 
     public void init(){

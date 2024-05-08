@@ -1,7 +1,7 @@
 package assignment.server.controller;
 
 import assignment.server.model.Student;
-import assignment.server.server_application.Command;
+import assignment.server.application.Command;
 import assignment.server.service.StudentService;
 import com.google.gson.Gson;
 import java.util.HashMap;
