@@ -22,21 +22,26 @@ public class TCPClient {
     this.gson = new Gson();
     this.host = host;
     this.port = port;
-    socket = new Socket();
   }
 
   public Response send(Command command) throws IOException {
     try {
-      this.socket = new Socket();
+      socket = new Socket();
       this.socket.connect(new InetSocketAddress(host, port));
+
       PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
       BufferedReader netIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
       out.println(gson.toJson(command));
+
       String bodyResponse = netIn.readLine();
+
       var response = gson.fromJson(bodyResponse, Response.class);
+
       if (!response.getStatusCode().equals("200")) {
         throw new RuntimeException(response.getMessage());
       }
+
       return response;
     } finally {
       if (socket != null) {

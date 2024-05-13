@@ -17,21 +17,30 @@ public class StudentController implements Controller {
   public StudentController(StudentService studentService) {
     this.studentService = studentService;
     functionMap.put("/student/get_all_students", command -> getAll());
+    functionMap.put("/student/create", command -> create(new Gson().fromJson(command.getData(), Student.class)));
     functionMap.put("/student/get_by_id", command -> getById(Integer.parseInt(command.getData())));
-    functionMap.put("/student/create",
-        command -> create(new Gson().fromJson(command.getData(), Student.class)));
+    functionMap.put("/student/update", command -> update(new Gson().fromJson(command.getData(), Student.class)));
+    functionMap.put("/student/delete", command -> delete(Integer.parseInt(command.getData())));
   }
 
   public List<Student> getAll(){
     return studentService.getAllStudents();
   };
 
+  public Student create(Student student) {
+    return studentService.create(student);
+  }
+
   public Student getById(Integer studentId) {
     return studentService.getById(studentId);
   }
 
-  public Student create(Student studentId) {
-    return studentService.create(studentId);
+  public Student update(Student student) {
+    return studentService.update(student);
+  }
+
+  public Student delete(Integer id) {
+      return studentService.delete(id);
   }
 
   @Override

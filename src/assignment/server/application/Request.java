@@ -5,6 +5,7 @@ import java.net.Socket;
 public class Request {
 
   private Command command;
+
   private Socket socket;
 
   public Command getCommand() {

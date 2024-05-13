@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface DAO<T, K> {
     List<T> getAll() throws SQLException;
-    T create(T entity);
+    T create(T entity) throws SQLException;
     T getById(K id);
     T update(T entity);
-    void delete(K id);
+    T delete(K id);
 }

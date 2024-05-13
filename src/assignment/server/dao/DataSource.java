@@ -19,17 +19,17 @@ public class DataSource {
             configuration.DB_NAME;
 
     public DataSource() throws Exception {
-//        try {
-//            config.setJdbcUrl(connectionUrl);
-//            config.setUsername("root");
-//            config.setPassword("");
-//            config.addDataSourceProperty("cachePrepStmts", "true");
-//            config.addDataSourceProperty("prepStmtCacheSize", "250");
-//            config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-//            ds = new HikariDataSource(config);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            config.setJdbcUrl(connectionUrl);
+            config.setUsername("root");
+            config.setPassword("");
+            config.addDataSourceProperty("cachePrepStmts", "true");
+            config.addDataSourceProperty("prepStmtCacheSize", "250");
+            config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+            ds = new HikariDataSource(config);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Connection getConnection() throws SQLException {

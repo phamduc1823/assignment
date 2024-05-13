@@ -17,7 +17,7 @@ public class Configuration {
     public String DB_MAX_CONNECTIONS;
 
     public Configuration() throws Exception {
-//        this.init();
+        this.init();
     }
 
     public void init(){
@@ -43,7 +43,6 @@ public class Configuration {
             }
         }
 
-        reader.close();
         return config;
     }
 }

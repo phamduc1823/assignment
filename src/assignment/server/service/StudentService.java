@@ -8,26 +8,34 @@ import java.util.List;
 
 public class StudentService {
 
-  private final StudentDao studentDao;
+    private final StudentDao studentDao;
 
-  public StudentService(StudentDao studentDao) {
-    this.studentDao = studentDao;
-  }
+    public StudentService(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
 
-  public List<Student> getAllStudents() {
-      try {
-          return studentDao.getAll();
-      } catch (SQLException e) {
-          throw new RuntimeException(e);
-      }
-  }
+    public List<Student> getAllStudents() {
+        try {
+            return studentDao.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-  public Student getById(Integer studentId) {
-    return studentDao.getById(studentId);
-  }
 
-  public Student create(Student studentId) {
-    //todo
-    return null;
-  }
+    public Student create(Student student) {
+        return studentDao.create(student);
+    }
+
+    public Student getById(Integer studentId) {
+        return studentDao.getById(studentId);
+    }
+
+    public Student update(Student student) {
+        return studentDao.update(student);
+    }
+
+    public Student delete(Integer id) {
+        return studentDao.delete(id);
+    }
 }
